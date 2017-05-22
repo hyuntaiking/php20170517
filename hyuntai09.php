@@ -18,9 +18,10 @@ echo "num5: {$num5}<br>";
 echo "num6: {$num6}<br>";
 
 $p = array(1=>0,0,0,0,0,0);
-for ($i=1; $i<=100; $i++){
-    $p[rand(1, 6)]++;
+for ($i=1; $i<=10000; $i++){
+    $temp = rand(1, 9);
+    $p[$temp>=7?$temp-3:$temp]++;
 }
-for ($i=1; $i<=6; $i++){
+for ($i=1; $i<=count($p); $i++){
     echo "p{$i}: {$p[$i]}<br>";
 }

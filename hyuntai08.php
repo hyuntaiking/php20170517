@@ -1,0 +1,23 @@
+<?php
+$a[0] = 12;
+echo gettype($a);
+echo '<br>';
+echo var_dump($a);
+echo '<hr>';
+$b[] = 1;
+$b[] = 1.2;
+$b[] = 'hyuntai';
+echo var_dump($b);
+echo '<hr>';
+$c['name'] = 'Hyuntai';
+$c['e-mail'] = 'hyuntai@gmail.com';
+echo var_dump($c);
+echo '<hr>';
+$d = array(1, 2, 3, true);
+echo var_dump($d);
+echo '<hr>';
+$e[0] = 12;
+$e = array(1, 2, 3, 'gender' => 'man',5);
+echo var_dump($e);
+echo count($e);
+echo '<hr>';
