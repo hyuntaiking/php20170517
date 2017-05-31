@@ -1,13 +1,14 @@
 <?php
+include 'sql.php';
+$dbh = @new PDO($dsn, $user, $passwd, $opt);
 session_start();
-if (!isset($_GET['editid'])) header("Location: hyuntai38.php");
+if (isset($_GET['editid']) == false) header("Location: member.php");
 $editid = $_GET['editid'];
 $_SESSION['id'] = $editid;
-$sql = "select * from member where id={$editid}";
-$db = @new mysqli('127.0.0.1',
-    'root','root','iii');
-$rs = $db->query($sql);
-$editObj = $rs->fetch_object();
+$sql = "select * from member where id=?";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([$editid]);
+$editObj = $stmt->fetchObject();
 ?>
 <form action="updateMember.php">
     <input type="hidden" name="id" value="<?php echo $editObj->id; ?>">
@@ -25,10 +26,10 @@ $editObj = $rs->fetch_object();
         <tr>
             <th>Real Name</th>
             <td><input type="text" name="realname"
-                       value="<?php echo $editObj->relname; ?>"></td>
+                       value="<?php echo $editObj->realname; ?>"></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Update"></td>
+            <td colspan="2"><input type="submit" value="upddate"></td>
         </tr>
     </table>
 </form>
