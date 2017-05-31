@@ -25,7 +25,7 @@ $editObj = $rs->fetch_object();
         <tr>
             <th>Real Name</th>
             <td><input type="text" name="realname"
-                       value="<?php echo $editObj->realname; ?>"></td>
+                       value="<?php echo $editObj->relname; ?>"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Update"></td>

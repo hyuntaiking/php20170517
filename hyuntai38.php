@@ -1,6 +1,6 @@
 <?php
 $db = @new mysqli('127.0.0.1','root','root','iii');
-if ($_GET['delid']) {
+if (@$_GET['delid']) {
     $delid = $_GET['delid'];
     $sql = "delete from member where id = {$delid}";
     $rs = $db->query($sql);
