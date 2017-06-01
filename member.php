@@ -1,18 +1,38 @@
 <?php
 include 'sql.php';
-$dbh = @new PDO($dsn, $user, $passwd, $opt);
+// Add
+if (isset($_GET['account'])) {
+    session_start();
+    $account  = $_GET['account'];
+    $passwd   = $_GET['passwd'];
+    $realname = $_GET['realname'];
+    $sql = "insert into member (account,passwd,realname) values (?,?,?)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$account,$passwd,$realname]);
+    //header("location: member.php");
+}
+// Delete
 if (@$_GET['delid']) {
     $delid = $_GET['delid'];
     $sql = "delete from member where id = ?";
-    $stmt = $dbh->prepare($sql);
+    $stmt = $pdo->prepare($sql);
+    var_dump($stmt);
     $stmt->execute([$delid]);
 }
-$stmt = $dbh->prepare('select * from member');
+$stmt = $pdo->prepare('select * from member');
 $stmt->execute();
-//$sql = "select * from member;";
-//$rs = $dbh->query($sql);
 ?>
-<a href="addMember.php">New</a>
+<form>
+<table border="1" width="75%">
+    <tr>
+        <td width="9%"></td>
+        <td width="25%"><input type="text" name="account"></td>
+        <td width="29%"><input type="password" name="passwd"></td>
+        <td width="40%"><input type="text" name="realname"></td>
+    </tr>
+</table>
+<input type="submit" value="New">
+
 <hr>
 <table border="1" width="100%">
     <tr>
@@ -36,3 +56,4 @@ $stmt->execute();
     }
     ?>
 </table>
+</form>
